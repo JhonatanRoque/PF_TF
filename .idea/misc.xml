@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/drawable-v24/button.xml" value="0.1655" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/drawable-v24/ic_email.xml" value="0.1655" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/drawable-v24/textverde.xml" value="0.1655" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/layout/activity_registrar_empresa.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/layout/activity_usuario_ui.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/layout/fragment_buses.xml" value="0.25" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/layout/fragment_empleado.xml" value="0.20761245674740483" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/layout/fragment_gallery.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/layout/fragment_rutas.xml" value="0.33" />
+        <entry key="..\:/Users/Salvador/Documents/PF_TF/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

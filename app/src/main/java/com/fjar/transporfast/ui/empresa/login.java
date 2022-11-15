@@ -11,16 +11,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.fjar.transporfast.MainActivity;
 import com.fjar.transporfast.R;
 
 public class login extends AppCompatActivity {
-    private Button btnReg, btnRecuperarUsu, btnRecuperarContrasena;
+    private Button btnReg, btnRecuperarUsu, btnRecuperarContrasena, btning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        btning = (Button) findViewById(R.id.btnIngresar);
         btnReg = (Button) findViewById(R.id.btnRegistrarse);
         btnRecuperarUsu = (Button) findViewById(R.id.btnRecuperarUsuario);
         btnRecuperarContrasena = (Button) findViewById(R.id.btnRecuperarContrasena);
@@ -83,6 +85,13 @@ public class login extends AppCompatActivity {
                 codigoV.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 codigoV.show();
 
+            }
+        });
+        btning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent vista = new Intent(login.this, MainActivity.class);
+                startActivity(vista);
             }
         });
     }

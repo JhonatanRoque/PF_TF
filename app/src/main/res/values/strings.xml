@@ -7,9 +7,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">INICIO</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_empleado">EMPLEADO</string>
+    <string name="menu_rutas">RUTAS</string>
+    <string name="menu_buses">BUSES</string>
+    <string name="menu_cuenta">CUENTA</string>
 
     <string name="google_maps_key">AIzaSyB80g4vFxONAvn1HnngyBevhH4ZZZtwDKY</string>
 
@@ -20,5 +24,19 @@
         <item>4_LP</item>
         <item>R-92</item>
     </array>
+    <array name="valorempresa">
+    <item>Elija un valor</item>
+    </array>
+    <array name="valorruta">
+        <item>Elija ruta</item>
+    </array>
+    <array name="valorauto">
+        <item>Elija auto</item>
+    </array>
+    <array name="ruta">
+        <item>Seleccione una ruta</item>
+    </array>
     <string name="title_activity_mapa">mapa</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

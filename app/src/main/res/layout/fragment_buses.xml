@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.empresa.Buses"
+    android:gravity="center"
+    android:background="@drawable/button">
+    <ImageView
+        android:id="@+id/conductor"
+        android:layout_width="wrap_content"
+        android:layout_height="138dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/conductor" />
+
+    <EditText
+        android:id="@+id/edt_marcaauto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textverde"
+        android:drawableStart="@drawable/ic_baseline_directions_car_24"
+        android:hint=" Marca del autobus"
+        android:inputType="text"
+        android:padding="10dp"
+        android:translationY="110dp" />
+    <EditText
+        android:id="@+id/edt_placaauto"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint=" N° de placa del autobus"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@drawable/textverde"
+        android:inputType="number"
+        android:drawableStart="@drawable/ic_baseline_directions_car_24"
+        android:translationY="169dp" />
+    <EditText
+        android:id="@+id/edt_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint=" Color del autobus"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@drawable/textverde"
+        android:inputType="text"
+        android:drawableStart="@drawable/ic_baseline_color_lens_24"
+        android:translationY="229dp" />
+    <EditText
+        android:id="@+id/edt_capacidadauto"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textverde"
+        android:drawableStart="@drawable/ic_baseline_subway_24"
+        android:hint=" Capacidad del autobus"
+        android:inputType="text"
+        android:padding="10dp"
+        android:translationY="289dp" />
+    <TextView
+        android:id="@+id/tv_fechaauto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="yyyy-MM-dd HH:mm:ss"
+        android:translationY="379dp"
+        android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/guardarauto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:translationY="449dp"
+        android:translationX="30dp"/>
+
+
+
+    <Button
+        android:id="@+id/modificarauto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MODIFICAR"
+        android:translationX="150dp"
+        android:translationY="449dp" />
+
+    <Button
+        android:id="@+id/eliminarauto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ELIMINAR"
+        android:translationX="280dp"
+        android:translationY="449dp"/>
+
+    <Button
+        android:id="@+id/listarauto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LISTA"
+        android:translationY="519dp" />
+
+</FrameLayout>

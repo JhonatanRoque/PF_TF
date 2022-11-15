@@ -22,4 +22,19 @@
         android:name="com.fjar.transporfast.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_empleado"
+        android:name="com.fjar.transporfast.ui.empresa.empleado"
+        android:label="@string/menu_empleado"
+        tools:layout="@layout/fragment_empleado" />
+    <fragment
+        android:id="@+id/nav_rutas"
+        android:name="com.fjar.transporfast.ui.empresa.rutas"
+        android:label="@string/menu_rutas"
+        tools:layout="@layout/fragment_rutas" />
+    <fragment
+        android:id="@+id/nav_buses"
+        android:name="com.fjar.transporfast.ui.empresa.Buses"
+        android:label="@string/menu_buses"
+        tools:layout="@layout/fragment_buses" />
 </navigation>
