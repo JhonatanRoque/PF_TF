@@ -29,14 +29,26 @@
     </array>
     <array name="valorruta">
         <item>Elija ruta</item>
-        <item>1</item>
+        <item>5-LP</item>
+        <item>3-LP</item>
+        <item>4_LP</item>
+        <item>R-92</item>
+
     </array>
     <array name="valorauto">
-        <item>Elija auto</item>
+        <item>Seleccione un auto</item>
         <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+
     </array>
     <array name="ruta">
         <item>Seleccione una ruta</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </array>
     <string name="title_activity_mapa">mapa</string>
     <!-- TODO: Remove or change this placeholder text -->

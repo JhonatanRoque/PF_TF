@@ -25,11 +25,11 @@
         android:padding="10dp"
         android:translationY="150dp" />
     <Spinner
-        android:id="@+id/edt_Apellidoempl"
+        android:id="@+id/sp_ruta"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:translationY="229dp"
-        android:entries="@array/ruta"/>
+        android:entries="@array/valorruta"/>
 
     <Button
         android:id="@+id/guardarempl"
