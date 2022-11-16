@@ -36,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:padding="10dp"
         android:background="@drawable/textverde"
-        android:inputType="number"
+        android:inputType="text"
         android:drawableStart="@drawable/ic_baseline_person_pin_24"
         android:translationY="169dp" />
     <EditText
@@ -75,14 +75,16 @@
         android:drawableStart="@drawable/ic_baseline_add_location_alt_24"
         android:translationY="349dp"/>
 
+
+
     <Spinner
-        android:id="@+id/empresaID"
+        android:id="@+id/rutaID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:translationY="429dp"
         android:entries="@array/valorruta"/>
     <Spinner
-        android:id="@+id/rutaID"
+        android:id="@+id/autoID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:translationY="489dp"

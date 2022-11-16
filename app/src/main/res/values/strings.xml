@@ -29,9 +29,11 @@
     </array>
     <array name="valorruta">
         <item>Elija ruta</item>
+        <item>1</item>
     </array>
     <array name="valorauto">
         <item>Elija auto</item>
+        <item>1</item>
     </array>
     <array name="ruta">
         <item>Seleccione una ruta</item>
