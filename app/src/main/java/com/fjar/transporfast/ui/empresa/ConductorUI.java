@@ -40,6 +40,7 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
     private GoogleMap mMap;
     private empleadoDTO empleadoObj = new empleadoDTO();
     private empleadoCRUD CRUD = new empleadoCRUD();
+    int i = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,35 +54,56 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
             @Override
             public void onClick(View view) {
                 bandera = true;
-                String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
-                String longtud = String.valueOf(mMap.getMyLocation().getLongitude());
-                empleadoObj.setLatitud(latitud);
-                empleadoObj.setLongitud(longtud);
-                empleadoObj.setId(1);
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        int i = 0;
-                        while(bandera){
-                            try{
-                                Thread.sleep(1500);
-                                CRUD.setUbicacion(getBaseContext(), empleadoObj);
 
-                                Log.e("mesnaje", empleadoObj.getLongitud() + empleadoObj.getLatitud());
-                                i++;
-                            } catch (InterruptedException e)
-                            {
-                                e.printStackTrace();
-                            }
+
+
+
+                        String longtud = getLongitud();
+                        String latitud = getLatitud();
+
+                        String lastLat = latitud;
+                        String lastLongi = longtud;
+
+                        if(lastLongi == longtud){
 
                         }
-                    }
-                };
 
-                Thread hilo = new Thread(runnable);
-                hilo.start();
 
-            }
+
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                int i = 0;
+                                while(bandera) {
+                                    try {
+                                        Thread.sleep(1500);
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                getUbicacion();
+                                            }
+                                        });
+                                        empleadoObj.setId(1);
+                                        CRUD.setUbicacion(getBaseContext(), empleadoObj);
+
+                                        Log.e("mesnaje", empleadoObj.getLongitud() + empleadoObj.getLatitud());
+                                        i++;
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+
+                        };
+
+
+                        Thread hilo = new Thread(runnable);
+                        hilo.start();
+
+
+                }
+
+
         });
 
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +121,27 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
         mapFragment.getMapAsync(ConductorUI.this);
     }
 
+    private void getUbicacion(){
 
+        empleadoObj.setLongitud(getLongitud() + i);
+        empleadoObj.setLatitud(getLatitud() + i);
+        i++;
 
+    }
+
+    private String getLongitud ()
+    {
+        String longtud = String.valueOf(mMap.getMyLocation().getLongitude());
+        longtud += 1;
+        return longtud;
+    }
+
+    private String getLatitud ()
+    {
+        String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
+        latitud += 1;
+        return latitud;
+    }
     @Override
     public void onMyLocationClick(@NonNull Location location) {
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG)
