@@ -23,7 +23,7 @@ import com.fjar.transporfast.R;
 public class empleado extends Fragment {
 
     private EditText nombre, apellido, telefono, correo, direccion;
-    private Spinner rutaID, autoID;
+    private Spinner spconductores, rutaID, autoID;
     private Button btnRegistrar;
     private empleadoDTO empleadoObj = new empleadoDTO();
     private empleadoCRUD CRUD = new empleadoCRUD();
@@ -79,9 +79,27 @@ public class empleado extends Fragment {
         correo = (EditText) root.findViewById(R.id.edt_correoEmpl);
         direccion = (EditText) root.findViewById(R.id.edt_direccionEmpl);
         btnRegistrar = (Button) root.findViewById(R.id.guardarempl);
+        spconductores = (Spinner) root.findViewById(R.id.sp_conductores);
         rutaID = (Spinner) root.findViewById(R.id.rutaID);
         autoID = (Spinner) root.findViewById(R.id.autoID);
+        empleadoObj.setEmpresaID(1);
+        CRUD.obtenerempleadoSpinner(getContext(), spconductores, empleadoObj);
+        spconductores.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+            String item = (String) spconductores.getSelectedItem().toString();
 
+                if(position != 0){
+                    String s[] = item.split("-");
+                    empleadoObj.setCorreo(s[2].trim());
+                    Toast.makeText(view.getContext(), "El correo es" + empleadoObj.getCorreo(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         rutaID.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -114,6 +132,7 @@ public class empleado extends Fragment {
 
             }
         });
+
 
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
