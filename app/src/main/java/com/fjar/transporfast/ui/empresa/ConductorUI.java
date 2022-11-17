@@ -121,8 +121,6 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
         mapFragment.getMapAsync(ConductorUI.this);
     }
 
-
-
     public String getLatitud(){
         String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
         return latitud;

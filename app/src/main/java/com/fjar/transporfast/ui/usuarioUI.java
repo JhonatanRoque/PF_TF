@@ -49,7 +49,6 @@ public class usuarioUI extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_ui);
 
-        btnMiPosicion = (Button) findViewById(R.id.btnMiPosicion);
         spnRutas = (Spinner) findViewById(R.id.spnFiltrarRutas);
 
 
@@ -76,7 +75,7 @@ public class usuarioUI extends AppCompatActivity implements OnMapReadyCallback {
                             int i = 0;
                             while(bandera) {
                                 try {
-                                    Thread.sleep(500);
+                                    Thread.sleep(1500);
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {

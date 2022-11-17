@@ -7,10 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.usuarioUI">
     
-   <ScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       >
+
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent"
@@ -63,51 +60,8 @@
                    tools:context=".ui.usuarioUI"/>
            </androidx.appcompat.widget.LinearLayoutCompat>
 
-           <androidx.appcompat.widget.AppCompatButton
-               android:id="@+id/btnMiPosicion"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Mi posicion"
-               android:layout_margin="10dp"
-               />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="10dp"
-               android:textStyle="bold"
-               android:textSize="20sp"
-               android:text="Calcular tiempo para el proximo bus "/>
-
-           <androidx.appcompat.widget.AppCompatButton
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Calcular"
-               android:layout_margin="10dp"
-               />
-
-           <androidx.appcompat.widget.LinearLayoutCompat
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginBottom="20dp"
-               >
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_marginLeft="10dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="15dp"
-                   android:text="Tiempo estimado para la llegada del proximo bus: "
-                   />
-               <TextView
-                   android:id="@+id/tiempoEstimado"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:textSize="15dp"
-                   android:text="xx:xx:xx "
-                   />
-           </androidx.appcompat.widget.LinearLayoutCompat>
        </LinearLayout>
-   </ScrollView>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

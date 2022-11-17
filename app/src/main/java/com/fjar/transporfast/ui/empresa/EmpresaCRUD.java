@@ -23,7 +23,7 @@ public class EmpresaCRUD {
 
     private EmpresaDTO empresaObj;
 
-    public void registrarEmpleado(final Context context, EmpresaDTO empresa) {
+    public void registrarEmpresa(final Context context, EmpresaDTO empresa) {
         String url = "https://transporfast.xyz/transportfast/registrarEmpresa.php";
         StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
             @Override
@@ -53,7 +53,7 @@ public class EmpresaCRUD {
                 Map<String, String> map = new HashMap<>();
                 map.put("Content-Type", "application/json; charset=utf-8");
                 map.put("Accept", "application/json");
-                map.put("nombre", empresa.getNombre());
+                map.put("nombres", empresa.getNombre());
                 map.put("telefono", empresa.getTelefono());
                 map.put("correo", empresa.getCorreo());
                 map.put("direccion", empresa.getDireccion());
