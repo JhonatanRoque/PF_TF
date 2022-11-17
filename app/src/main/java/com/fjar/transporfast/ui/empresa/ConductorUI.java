@@ -121,26 +121,39 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
         mapFragment.getMapAsync(ConductorUI.this);
     }
 
+
+<<<<<<< HEAD
+        empleadoObj.setLongitud(getLongitud());
+        empleadoObj.setLatitud(getLatitud());
+=======
+>>>>>>> d48e4e9557acd5347e955869fdba66fd1b73878a
+
+    public String getLatitud(){
+        String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
+        return latitud;
+    }
+    public String getLongitud(){
+        String longtud = String.valueOf(mMap.getMyLocation().getLongitude());
+        return longtud;
+    }
+
+    public empleadoDTO empl (String latitud, String Longitud){
+        empleadoObj = new empleadoDTO();
+        empleadoObj.setLatitud(latitud);
+        empleadoObj.setLongitud(Longitud);
+        empleadoObj.setId(1);
+        return empleadoObj;
+    }
+
     private void getUbicacion(){
 
         empleadoObj.setLongitud(getLongitud());
         empleadoObj.setLatitud(getLatitud());
 
+
     }
 
-    private String getLongitud ()
-    {
-        String longtud = String.valueOf(mMap.getMyLocation().getLongitude());
-        longtud += 1;
-        return longtud;
-    }
 
-    private String getLatitud ()
-    {
-        String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
-        latitud += 1;
-        return latitud;
-    }
     @Override
     public void onMyLocationClick(@NonNull Location location) {
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG)
