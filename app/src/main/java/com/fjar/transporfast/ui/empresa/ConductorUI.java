@@ -125,7 +125,6 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
 
         empleadoObj.setLongitud(getLongitud());
         empleadoObj.setLatitud(getLatitud());
-        i++;
 
     }
 
