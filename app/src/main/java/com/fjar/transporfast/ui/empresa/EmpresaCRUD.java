@@ -66,11 +66,9 @@ public class EmpresaCRUD {
         MySingleton.getInstance(context).addToRequestQueue(request);
     }
     public void IniciarSesionempl(final Context context, EmpresaDTO empleado, Switch mantener) {
-<<<<<<< HEAD
+
         String url = "https://transporfast.xyz/transportfast/iniciarSesionEmpresa.php";
-=======
-        String url = "";
->>>>>>> 45492ade57719ed2d16716bf49d3f3c335e199dc
+
         StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
