@@ -1,9 +1,12 @@
 package com.fjar.transporfast.ui.empresa;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -14,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.fjar.transporfast.MySingleton;
+import com.fjar.transporfast.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -220,4 +224,105 @@ public class empleadoCRUD {
         MySingleton.getInstance(context).addToRequestQueue(request);
 
     }
+    public void guardarempleado(final Context context, empleadoDTO empleado ) {
+        String url = "";
+        StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject requestJSON = new JSONObject(response.toString());
+                    String estado = requestJSON.getString("estado");
+                    String mensaje = requestJSON.getString("mensaje");
+                    if(estado.equals("1")){
+                        Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Registro almacenado en MySQL.", Toast.LENGTH_SHORT).show();
+                    }else if(estado.equals("2")){
+                        Toast.makeText(context, "Error: "+mensaje, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(context, "No se pudo guardar. \n" +"Intentelo más tarde.", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //En este método se colocan o se setean los valores a recibir por el fichero *.php
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "application/json; charset=utf-8");
+                map.put("Accept", "application/json");
+                map.put("nombre", empleado.getNombre());
+                map.put("apellido", empleado.getApellido());
+                map.put("telefono", empleado.getTelefono());
+                map.put("correo", empleado.getCorreo());
+                map.put("direccion", empleado.getDireccion());
+                map.put("empresa", String.valueOf(empleado.getEmpresaID()));
+                map.put("ruta", String.valueOf(empleado.getRutaID()));
+                map.put("auto", String.valueOf(empleado.getAutoID()));
+                return map;
+            }
+        };
+        Log.e("URL", request.getUrl().toString());
+        MySingleton.getInstance(context).addToRequestQueue(request);
+    }
+    public void eliminarempleado(final Context context, empleadoDTO empleado) {
+        String url = "";
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setIcon(R.drawable.ic_baseline_delete_24);
+        builder.setTitle("Warning");
+        builder.setMessage("¿Esta seguro de borrar el registro? \n Código:" +
+                empleado.getId());
+        builder.setCancelable(false);
+        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject requestJSON = new JSONObject(response.toString());
+                            String estado = requestJSON.getString("estado");
+                            String mensaje = requestJSON.getString("mensaje");
+                            if (estado.equals("1")) {
+                                Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(context, "Registro almacenado en MySQL.", Toast.LENGTH_SHORT).show();
+                            } else if (estado.equals("2")) {
+                                Toast.makeText(context, "Error" + mensaje, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(context, "No se pudo eliminar. \n" + "Intentelo más tarde.", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        //En este método se colocan o se setean los valores a recibir por el fichero *.php
+                        Map<String, String> map = new HashMap<>();
+                        map.put("Content-Type", "application/json; charset=utf-8");
+                        map.put("Accept", "application/json");
+                        map.put("id", String.valueOf(empleado.getId()));
+                        return map;
+                    }
+                };
+                MySingleton.getInstance(context).addToRequestQueue(request);
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();;
+
+    }
+
 }

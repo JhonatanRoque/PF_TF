@@ -98,6 +98,8 @@ public class EmpresaCRUD {
                             editor.commit();
 
                         }else {
+                            SharedPreferences spEmpresa = context.getSharedPreferences("empresa",context.MODE_PRIVATE);
+                            spEmpresa.edit().clear();
                             Toast.makeText(context, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                         }
                     }else{

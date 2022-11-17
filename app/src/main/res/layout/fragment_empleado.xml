@@ -128,5 +128,10 @@
         android:text="LISTA"
        />
 
+    <ListView
+        android:id="@+id/lvempleado"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp" />
+
 
 </LinearLayout>
