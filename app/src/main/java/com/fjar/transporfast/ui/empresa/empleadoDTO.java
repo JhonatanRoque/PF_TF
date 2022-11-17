@@ -12,6 +12,7 @@ public class empleadoDTO {
     private int autoID;
     private String latitud;
     private String longitud;
+    private String contrasena;
 
     public empleadoDTO() {
         this.id = 0;
@@ -25,9 +26,10 @@ public class empleadoDTO {
         this.autoID = 0;
         this.latitud = "";
         this.longitud = "";
+        this.contrasena = "";
     }
 
-    public empleadoDTO(int id, String nombre, String apellido, String telefono, String correo, String direccion, int empresaID, int rutaID, int autoID, String latitud, String longitud) {
+    public empleadoDTO(int id, String nombre, String apellido, String telefono, String correo, String direccion, int empresaID, int rutaID, int autoID, String latitud, String longitud, String contrasena) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -39,7 +41,10 @@ public class empleadoDTO {
         this.autoID = autoID;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.contrasena = contrasena;
     }
+
+
 
     public int getId() {
         return id;
@@ -127,5 +132,12 @@ public class empleadoDTO {
 
     public void setLongitud(String longitud) {
         this.longitud = longitud;
+    }
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 }
