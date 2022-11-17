@@ -7,14 +7,20 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.fjar.transporfast.R;
+import com.fjar.transporfast.ui.empresa.empleadoDTO;
+import com.fjar.transporfast.ui.empresa.rutaCRUD;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
@@ -33,6 +39,10 @@ import com.google.maps.model.DistanceMatrixRow;
 public class usuarioUI extends AppCompatActivity implements OnMapReadyCallback {
 
     private Button btnMiPosicion;
+    private Spinner spnRutas;
+    private rutaCRUD rutaCRUD = new rutaCRUD();
+    private usuarioCRUD usuCRUD = new usuarioCRUD();
+    boolean bandera = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,7 @@ public class usuarioUI extends AppCompatActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_usuario_ui);
 
         btnMiPosicion = (Button) findViewById(R.id.btnMiPosicion);
+        spnRutas = (Spinner) findViewById(R.id.spnFiltrarRutas);
 
 
 
@@ -48,6 +59,56 @@ public class usuarioUI extends AppCompatActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(usuarioUI.this);
 
+        rutaCRUD.obtenerRutaSpinner(getApplicationContext(), spnRutas);
+
+        spnRutas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String item = spnRutas.getSelectedItem().toString();
+                if(position != 0){
+                    String s[] = item.split("-");
+                    empleadoDTO dtoruta = new empleadoDTO();
+                    dtoruta.setRutaID(Integer.parseInt(s[0].trim()));
+                    bandera = true;
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            int i = 0;
+                            while(bandera) {
+                                try {
+                                    Thread.sleep(500);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+
+                                            usuCRUD.obtenerbuses(getBaseContext(), mMap, dtoruta);
+                                            usuCRUD.obtenerParadas(getBaseContext(), mMap, dtoruta);
+
+
+                                        }
+                                    });
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                    };
+
+
+                    Thread hilo = new Thread(runnable);
+                    hilo.start();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
     }
     private GoogleMap mMap;
@@ -55,7 +116,17 @@ public class usuarioUI extends AppCompatActivity implements OnMapReadyCallback {
     private DistanceMatrixApi.Response distancia;
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        bandera = false;
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bandera = false;
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -73,23 +144,7 @@ public class usuarioUI extends AppCompatActivity implements OnMapReadyCallback {
         mMap.setMyLocationEnabled(true);
 
 
-        btnMiPosicion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                mMap.clear();
-                // Add a marker in Sydney and move the camera
-                LatLng sydney = new LatLng(-35, 151);
-                MarkerOptions options = new MarkerOptions().position(sydney).title("Marker in Sydney2");
-                mMap.addMarker(options);
-
-            }
-        });
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        MarkerOptions options = new MarkerOptions().position(sydney).title("Marker in Sydney");
-        mMap.addMarker(options);
 
     }
 

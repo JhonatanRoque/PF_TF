@@ -83,7 +83,7 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
                                                 getUbicacion();
                                             }
                                         });
-                                        empleadoObj.setId(1);
+                                        empleadoObj.setId(3);
                                         CRUD.setUbicacion(getBaseContext(), empleadoObj);
 
                                         Log.e("mesnaje", empleadoObj.getLongitud() + empleadoObj.getLatitud());
@@ -123,8 +123,8 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
 
     private void getUbicacion(){
 
-        empleadoObj.setLongitud(getLongitud() + i);
-        empleadoObj.setLatitud(getLatitud() + i);
+        empleadoObj.setLongitud(getLongitud());
+        empleadoObj.setLatitud(getLatitud());
         i++;
 
     }
