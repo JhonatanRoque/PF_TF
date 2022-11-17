@@ -1,7 +1,9 @@
 package com.fjar.transporfast.ui.empresa;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -57,6 +59,69 @@ public class EmpresaCRUD {
                 map.put("direccion", empresa.getDireccion());
                 map.put("codigoPostal", empresa.getCodigopostal());
                 map.put("contrasena", empresa.getContrasena());
+                return map;
+            }
+        };
+        Log.e("URL", request.getUrl().toString());
+        MySingleton.getInstance(context).addToRequestQueue(request);
+    }
+    public void IniciarSesionempl(final Context context, EmpresaDTO empleado, Switch mantener) {
+        String url = "https://franciscowebtw.000webhostapp.com/service2020/iniciarSesion.php";
+        StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject requestJSON = new JSONObject(response.toString());
+                    if(requestJSON.has("mensaje") == false){
+                        String id = requestJSON.getString("id");
+                        String nombre = requestJSON.getString("nombre");
+                        String correo = requestJSON.getString("correo");
+
+                        if(id.length() > 0){
+                            Toast.makeText(context, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
+                            SharedPreferences spEmpresa = context.getSharedPreferences("empresa", context.MODE_PRIVATE);
+                            String estado = "logON";
+                            SharedPreferences.Editor editor = spEmpresa.edit();
+                            editor.putString("estado", estado);
+                            //Si se establecio la opcion de mantener iniciada sesion
+                            if(mantener.isChecked()){
+
+                                editor.putString("id", id);
+
+
+                            }
+                            editor.putString("nickName", nombre);
+                            editor.commit();
+
+                        }else {
+                            Toast.makeText(context, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        String mensaje = requestJSON.getString("mensaje");
+                        Toast.makeText(context, "" + mensaje, Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(context, "No se pudo iniciar session. \n" +"Intentelo más tarde." + volleyError.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //En este método se colocan o se setean los valores a recibir por el fichero *.php
+                Map<String, String> map = new HashMap<>();
+                    map.put("Content-Type", "application/json; charset=utf-8");
+                    map.put("Accept", "application/json");
+                    map.put("nombre", empleado.getNombre());
+                    map.put("contrasena", empleado.getContrasena());
+
+
                 return map;
             }
         };
