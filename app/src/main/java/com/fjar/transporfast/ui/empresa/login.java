@@ -97,5 +97,27 @@ public class login extends AppCompatActivity {
 
             }
         });
+<<<<<<< HEAD
+
+        btning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                usuario.setNombre(usuarios.getText().toString());
+                usuario.setContrasena(contrasena.getText().toString());
+                if(usuario.getNombre().length() == 0){
+                    usuarios.setError("Campo obligatorio");
+                }else if(usuario.getContrasena().length() == 0){
+                    contrasena.setError("Campo obligatorio");
+                }else {
+                    CRUD.IniciarSesionempl(login.this, usuario, holdSession);
+                    Intent vista = new Intent(login.this, MainActivity.class);
+                    startActivity(vista);
+
+                }
+            }
+        });
+
+=======
+>>>>>>> 45492ade57719ed2d16716bf49d3f3c335e199dc
     }
 }

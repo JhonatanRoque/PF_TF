@@ -45,12 +45,12 @@ public class RegistrarEmpresa extends AppCompatActivity {
         btnRegEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dto.setNombre(nombre.toString());
-                dto.setTelefono(telefono.toString());
-                dto.setCorreo(correo.toString());
-                dto.setDireccion(direccion.toString());
-                dto.setCodigopostal(codigoPostal.toString());
-                dto.setContrasena(contrasena.toString());
+                dto.setNombre(nombre.getText().toString());
+                dto.setTelefono(telefono.getText().toString());
+                dto.setCorreo(correo.getText().toString());
+                dto.setDireccion(direccion.getText().toString());
+                dto.setCodigopostal(codigoPostal.getText().toString());
+                dto.setContrasena(contrasena.getText().toString());
 
                 if(dto.getNombre().length() == 0){
                     nombre.setError("Campo obligatorio");

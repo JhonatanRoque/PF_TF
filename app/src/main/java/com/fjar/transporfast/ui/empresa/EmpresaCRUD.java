@@ -66,7 +66,11 @@ public class EmpresaCRUD {
         MySingleton.getInstance(context).addToRequestQueue(request);
     }
     public void IniciarSesionempl(final Context context, EmpresaDTO empleado, Switch mantener) {
+<<<<<<< HEAD
+        String url = "https://transporfast.xyz/transportfast/iniciarSesionEmpresa.php";
+=======
         String url = "";
+>>>>>>> 45492ade57719ed2d16716bf49d3f3c335e199dc
         StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -89,8 +93,10 @@ public class EmpresaCRUD {
                                 editor.putString("id", id);
 
 
+
                             }
                             editor.putString("nickName", nombre);
+                            editor.putString("correo", correo);
                             editor.commit();
 
                         }else {
@@ -118,7 +124,7 @@ public class EmpresaCRUD {
                 Map<String, String> map = new HashMap<>();
                     map.put("Content-Type", "application/json; charset=utf-8");
                     map.put("Accept", "application/json");
-                    map.put("nombre", empleado.getNombre());
+                    map.put("empresa", empleado.getNombre());
                     map.put("contrasena", empleado.getContrasena());
 
 
