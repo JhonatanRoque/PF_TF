@@ -40,6 +40,7 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
     private GoogleMap mMap;
     private empleadoDTO empleadoObj = new empleadoDTO();
     private empleadoCRUD CRUD = new empleadoCRUD();
+    int i = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,52 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
 
 
 
-            }
+                        String longtud = getLongitud();
+                        String latitud = getLatitud();
+
+                        String lastLat = latitud;
+                        String lastLongi = longtud;
+
+                        if(lastLongi == longtud){
+
+                        }
+
+
+
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                int i = 0;
+                                while(bandera) {
+                                    try {
+                                        Thread.sleep(1500);
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                getUbicacion();
+                                            }
+                                        });
+                                        empleadoObj.setId(3);
+                                        CRUD.setUbicacion(getBaseContext(), empleadoObj);
+
+                                        Log.e("mesnaje", empleadoObj.getLongitud() + empleadoObj.getLatitud());
+                                        i++;
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+
+                        };
+
+
+                        Thread hilo = new Thread(runnable);
+                        hilo.start();
+
+
+                }
+
+
         });
 
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +121,9 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
         mapFragment.getMapAsync(ConductorUI.this);
     }
 
-    public Runnable hilo (){}
 
-    public String getLatitude(){
+
+    public String getLatitud(){
         String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
         return latitud;
     }
@@ -93,6 +139,15 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
         empleadoObj.setId(1);
         return empleadoObj;
     }
+
+    private void getUbicacion(){
+
+        empleadoObj.setLongitud(getLongitud());
+        empleadoObj.setLatitud(getLatitud());
+
+
+    }
+
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
