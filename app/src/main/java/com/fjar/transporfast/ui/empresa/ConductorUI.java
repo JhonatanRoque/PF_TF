@@ -53,33 +53,9 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
             @Override
             public void onClick(View view) {
                 bandera = true;
-                String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
-                String longtud = String.valueOf(mMap.getMyLocation().getLongitude());
-                empleadoObj.setLatitud(latitud);
-                empleadoObj.setLongitud(longtud);
-                empleadoObj.setId(1);
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        int i = 0;
-                        while(bandera){
-                            try{
-                                Thread.sleep(1500);
-                                CRUD.setUbicacion(getBaseContext(), empleadoObj);
 
-                                Log.e("mesnaje", empleadoObj.getLongitud() + empleadoObj.getLatitud());
-                                i++;
-                            } catch (InterruptedException e)
-                            {
-                                e.printStackTrace();
-                            }
 
-                        }
-                    }
-                };
 
-                Thread hilo = new Thread(runnable);
-                hilo.start();
 
             }
         });
@@ -99,7 +75,24 @@ public class ConductorUI extends AppCompatActivity implements  GoogleMap.OnMyLoc
         mapFragment.getMapAsync(ConductorUI.this);
     }
 
+    public Runnable hilo (){}
 
+    public String getLatitude(){
+        String latitud = String.valueOf(mMap.getMyLocation().getLatitude());
+        return latitud;
+    }
+    public String getLongitud(){
+        String longtud = String.valueOf(mMap.getMyLocation().getLongitude());
+        return longtud;
+    }
+
+    public empleadoDTO empl (String latitud, String Longitud){
+        empleadoObj = new empleadoDTO();
+        empleadoObj.setLatitud(latitud);
+        empleadoObj.setLongitud(Longitud);
+        empleadoObj.setId(1);
+        return empleadoObj;
+    }
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
