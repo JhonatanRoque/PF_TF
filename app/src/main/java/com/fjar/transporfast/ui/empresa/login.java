@@ -97,41 +97,6 @@ public class login extends AppCompatActivity {
 
             }
         });
-        btning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String empl = usuarios.getText().toString();
-                String contra = contrasena.getText().toString();
 
-                if(empl.length() == 0){
-                    usuarios.setError("Campo obligatorio");
-                }else if(contra.length() == 0){
-                    contrasena.setError("Campo obligatorio");
-                }else {
-
-                    }if{
-                        usuario.setNombre(empl);
-                    }
-                    usuario.setContrasena(contra);
-
-                CRUD.registrarEmpleado(login.this, usuario, holdSession);
-                    DtoUsuario usua = new DtoUsuario();
-                    SharedPreferences sp = getSharedPreferences("usuario", Context.MODE_PRIVATE);
-                    String estado = sp.getString("estado", "");
-                    if(estado.equals("logON")){
-                        if(sp.contains("id")){
-                            String id = sp.getString("id", "");
-                            usua.setId(Integer.parseInt(id));
-                            if(usua.getId() > 0){
-                                Toast.makeText(InitSession.this, "Su id es: " + usua.getId(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        Intent nueva = new Intent(InitSession.this, MainActivity.class);
-                        startActivity(nueva);
-                    }
-
-                }
-            }
-        });
     }
 }
