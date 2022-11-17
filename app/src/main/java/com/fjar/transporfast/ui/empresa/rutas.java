@@ -1,5 +1,7 @@
 package com.fjar.transporfast.ui.empresa;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,16 +9,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.fjar.transporfast.MainActivity;
 import com.fjar.transporfast.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link rutas#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+
 public class rutas extends Fragment {
 
+    TextView tvRutas;
+    boolean [] selectedRuta;
+    ArrayList<Integer> rutaList = new ArrayList<>();
+    String[] rutaArray = {"3LP", "4LP", "5LP"};
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,14 +38,7 @@ public class rutas extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment rutas.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static rutas newInstance(String param1, String param2) {
         rutas fragment = new rutas();
@@ -61,6 +62,69 @@ public class rutas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rutas, container, false);
+        View root = inflater.inflate(R.layout.fragment_rutas, container, false);
+        tvRutas = root.findViewById(R.id.tv_rutas);
+
+        selectedRuta = new boolean[rutaArray.length];
+
+        tvRutas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(
+                        getContext()
+                );
+
+                builder.setTitle("Selected Ruta");
+                builder.setCancelable(false);
+                builder.setMultiChoiceItems(rutaArray, selectedRuta, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                        if(b){
+                            rutaList.add(i);
+
+                            Collections.sort(rutaList);
+                        }else {
+                            rutaList.remove(i);
+                        }
+                    }
+                });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for(int j=0; j<rutaList.size(); j++) {
+                            stringBuilder.append(rutaArray[rutaList.get(j)]);
+                            if(j != rutaList.size()-1){
+                                stringBuilder.append(",");
+                            }
+                        }
+                        tvRutas.setText(stringBuilder.toString());
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        for(int j=0; j<selectedRuta.length; j++){
+                            selectedRuta[j] = false;
+
+                            rutaList.clear();
+
+                            tvRutas.setText("");
+                        }
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        return root;
     }
 }
