@@ -66,7 +66,11 @@ public class EmpresaCRUD {
         MySingleton.getInstance(context).addToRequestQueue(request);
     }
     public void IniciarSesionempl(final Context context, EmpresaDTO empleado, Switch mantener) {
+<<<<<<< HEAD
         String url = "https://transporfast.xyz/transportfast/iniciarSesionEmpresa.php";
+=======
+        String url = "";
+>>>>>>> 45492ade57719ed2d16716bf49d3f3c335e199dc
         StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -129,5 +133,45 @@ public class EmpresaCRUD {
         };
         Log.e("URL", request.getUrl().toString());
         MySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+        public void ValidarCodigo(final Context context, EmpresaDTO empresa, final String codigo) {
+            String url = "";
+            StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject requestJSON = new JSONObject(response.toString());
+                        String estado = requestJSON.getString("estado");
+                        String mensaje = requestJSON.getString("mensaje");
+                        if(estado.equals("1")){
+                            Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, "Registro almacenado en MySQL.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "Error: "+mensaje, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Toast.makeText(context, "No se pudo obtener el codigo. \n" +"Intentelo más tarde.", Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    //En este método se colocan o se setean los valores a recibir por el fichero *.php
+                    Map<String, String> map = new HashMap<>();
+                    map.put("Content-Type", "application/json; charset=utf-8");
+                    map.put("Accept", "application/json");
+                    map.put("codigo", codigo);
+
+                    return map;
+                }
+            };
+            Log.e("URL", request.getUrl().toString());
+            MySingleton.getInstance(context).addToRequestQueue(request);
+
     }
 }

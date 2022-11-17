@@ -97,6 +97,7 @@ public class login extends AppCompatActivity {
 
             }
         });
+<<<<<<< HEAD
 
         btning.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,5 +117,7 @@ public class login extends AppCompatActivity {
             }
         });
 
+=======
+>>>>>>> 45492ade57719ed2d16716bf49d3f3c335e199dc
     }
 }
