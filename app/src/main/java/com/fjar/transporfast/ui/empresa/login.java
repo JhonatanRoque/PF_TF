@@ -114,7 +114,7 @@ public class login extends AppCompatActivity {
                     }
                     usuario.setContrasena(contra);
 
-                CRUD.registrarEmpleado(login.this, usuario, holdSession);
+                CRUD.IniciarSesionUsu(InitSession.this, usuario, holdSession);
                     DtoUsuario usua = new DtoUsuario();
                     SharedPreferences sp = getSharedPreferences("usuario", Context.MODE_PRIVATE);
                     String estado = sp.getString("estado", "");
